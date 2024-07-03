@@ -3,14 +3,14 @@
 # you can rich me on telegram t.me/@zetaxbyte
 # flags of proton clang
 
-if [ -d $pwd../proton-clang ] ; then
+if [ -d $(pwd)/../proton-clang ] ; then
 echo -e "\n lets's go \n"
 else
 echo -e "\n \033[91mproton-clang dir not found!!!\033[0m \n"
 sleep 2
 echo -e "\033[93m wait.. cloning proton-clang...\033[0m \n"
 sleep 2
-git clone https://github.com/kdrag0n/proton-clang.git --depth=1 $pwd../proton-clang
+git clone https://github.com/kdrag0n/proton-clang.git --depth=1 $(pwd)/../proton-clang
 sleep 1
 echo
 echo -e "\n \033[92mokay cloning done...\033[0m \n"
@@ -51,9 +51,9 @@ DEFCONFIG="X00P_defconfig"
 export KBUILD_BUILD_USER="t.me@/zetaxbyte"
 export KBUILD_BUILD_HOST="Dark-Angel"
 
-# do not modify TC_DIR and export PATCH it's been including with the cloning proton-clang dir
+# do not modify TC_DIR and export PATCH it's been including with the proton-clang dir
 
-TC_DIR="$pwd../proton-clang"
+TC_DIR="$(pwd)/../proton-clang"
 
 export PATH="$TC_DIR/bin:$PATH"
 
@@ -62,7 +62,7 @@ make O=out ARCH=arm64 $DEFCONFIG
 
 make -j$(nproc --all) O=out ARCH=arm64 CC=clang AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_ARM32=arm-linux-gnueabi- 2>&1 | tee log.txt
 
-if [ -f out/arch/arm64/boot/Image.gz ] ; then
+if [ -f out/arch/arm64/boot/Image ] ; then
     echo -e "$cyan===========================\033[0m"
     echo -e "$cyan=  SUCCESS COMPILE KERNEL =\033[0m"
     echo -e "$cyan===========================\033[0m"
